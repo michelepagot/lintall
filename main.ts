@@ -2,16 +2,16 @@ import { App, Editor, MarkdownView, Modal, Notice, Plugin, PluginSettingTab, Set
 
 // Remember to rename these classes and interfaces!
 
-interface MyPluginSettings {
-	mySetting: string;
+interface LintAllSettings {
+	lintAllSetting: string;
 }
 
-const DEFAULT_SETTINGS: MyPluginSettings = {
-	mySetting: 'default'
+const DEFAULT_SETTINGS: LintAllSettings = {
+	lintAllSetting: 'normal'
 }
 
-export default class MyPlugin extends Plugin {
-	settings: MyPluginSettings;
+export default class LintAll extends Plugin {
+	settings: LintAllSettings;
 
 	async onload() {
 		await this.loadSettings();
@@ -108,9 +108,9 @@ class SampleModal extends Modal {
 }
 
 class SampleSettingTab extends PluginSettingTab {
-	plugin: MyPlugin;
+	plugin: n;
 
-	constructor(app: App, plugin: MyPlugin) {
+	constructor(app: App, plugin: Lintall) {
 		super(app, plugin);
 		this.plugin = plugin;
 	}
@@ -121,13 +121,13 @@ class SampleSettingTab extends PluginSettingTab {
 		containerEl.empty();
 
 		new Setting(containerEl)
-			.setName('Setting #1')
-			.setDesc('It\'s a secret')
+			.setName('Lint exe')
+			.setDesc('Lint executable file path')
 			.addText(text => text
-				.setPlaceholder('Enter your secret')
-				.setValue(this.plugin.settings.mySetting)
+				.setPlaceholder('Enter your path')
+				.setValue(this.plugin.settings.lintAllSetting)
 				.onChange(async (value) => {
-					this.plugin.settings.mySetting = value;
+					this.plugin.settings.lintAllSetting = value;
 					await this.plugin.saveSettings();
 				}));
 	}
